@@ -5,3 +5,6 @@
 // Compare choices and determine winner
 // Display results
 // Handle invalid inputs
+
+
+const choices = ['rock', 'paper', 'scissors'];

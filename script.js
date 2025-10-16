@@ -8,3 +8,8 @@
 
 
 const choices = ['rock', 'paper', 'scissors'];
+
+function getComputerChoice () {
+    const randomIndex = (Math.random () * 3);
+    return choices[randomIndex];
+}

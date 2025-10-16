@@ -9,7 +9,12 @@
 
 const choices = ['rock', 'paper', 'scissors'];
 
-function getComputerChoice () {
+function getComputerChoice() {
     const randomIndex = (Math.random () * 3);
     return choices[randomIndex];
+}
+
+function getPlayerChoice() {
+    let playerSelection = prompt('Choose rock, paper, or scissors:').toLowerCase();
+    return playerSelection;
 }

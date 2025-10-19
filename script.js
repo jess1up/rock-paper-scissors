@@ -7,14 +7,58 @@
 // Handle invalid inputs
 
 
-const choices = ['rock', 'paper', 'scissors'];
+const choices = [`Rock`, `Paper`, `Scissors`];
+
+let humanScore = 0;
+let computerScore = 0;
 
 function getComputerChoice() {
-    const randomIndex = (Math.random () * 3);
+    const randomIndex = Math.floor(Math.random () * 3);
     return choices[randomIndex];
 }
 
 function getPlayerChoice() {
-    let playerSelection = prompt('Choose rock, paper, or scissors:').toLowerCase();
+    let playerSelection = prompt(`Choose Rock, Paper, or Scissors:`).toLowerCase();
     return playerSelection;
 }
+
+function playRound(playerSelection, computerSelection) {
+    const playerLower = playerSelection.toLowerCase();
+    const computerLower = computerSelection.toLowerCase();
+    
+    if (playerLower === computerLower) {
+        return `It's a tie!`;
+    } else if (
+        (playerLower === 'rock' && computerLower === 'scissors') ||
+        (playerLower === 'paper' && computerLower === 'rock') ||
+        (playerLower === 'scissors' && computerLower === 'paper')
+    ) {
+        humanScore++;
+        return `You win! ${capitalizeFirst(playerSelection)} beats ${capitalizeFirst(computerSelection)}`;
+    } else {
+        computerScore++;
+        return `You lose! ${capitalizeFirst(computerSelection)} beats ${capitalizeFirst(playerSelection)}`;
+    }
+}
+
+function playGame() {
+    console.log(playRound(getPlayerChoice(), getComputerChoice()));
+    console.log(playRound(getPlayerChoice(), getComputerChoice()));
+    console.log(playRound(getPlayerChoice(), getComputerChoice()));
+    console.log(playRound(getPlayerChoice(), getComputerChoice()));
+    console.log(playRound(getPlayerChoice(), getComputerChoice()));
+
+    if (humanScore > computerScore) {
+        console.log(`You win! ${humanScore}-${computerScore}`);
+    } else if (computerScore > humanScore) {
+        console.log(`GAME OVER! ${humanScore}-${computerScore}`);
+    } else {
+        console.log(`It's a tie! ${humanScore}-${computerScore}`);
+    }
+}
+
+function capitalizeFirst(string) {
+    return string.charAt(0).toUpperCase() + string.slice(1).toLowerCase();
+}
+
+playGame();
